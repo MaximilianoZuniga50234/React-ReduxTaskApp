@@ -1,15 +1,20 @@
 import { useSelector } from "react-redux";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const taskState = useSelector((state) => state.tasks);
-
   return (
-    <div className="App">
-      <h1>Hello</h1>
-      <TaskForm />
-      <TaskList />
+    <div className="text-white h-screen bg-slate-800">
+      <div className="flex items-center justify-center h-full">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<TaskList />} />
+            <Route path="/create-task" element={<TaskForm />} />
+            <Route path="/edit-task/:id" element={<TaskForm />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }
